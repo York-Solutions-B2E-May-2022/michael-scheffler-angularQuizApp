@@ -1,0 +1,40 @@
+.example-card {
+  // width: 75%;
+  // height: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  // margin-top: 0.5%;
+  margin-bottom: 01%;
+  // vertical-align: middle;
+}
+
+.example-card-2 {
+  margin-top: 1%;
+  justify-content: space-between;
+  background-color: rgb(84, 82, 82);
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.progress-bar {
+  border: none;
+}
+.progress-bar2 {
+  margin: 10%;
+  border: solid;
+}
+
+.example-card {
+  max-width: 800px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.example-card-congrats {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 96%;
+}

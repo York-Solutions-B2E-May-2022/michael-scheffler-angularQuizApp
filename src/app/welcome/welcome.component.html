@@ -1,0 +1,21 @@
+<mat-card class="welcome-card">
+    <div class="welcome-card-content">
+        <h1> WELCOME TO QUIZ!</h1>
+        <p>this quiz will contain 9 questions. Each Question Holds 10 points</p>
+        <h4>Rules:</h4>
+        <ol>
+            <li>lots of rules...</li>
+        </ol>
+    </div>
+
+    <div class="welcome-name">
+        <label for="">Please Enter Name:</label>
+        <input #name type="text" class="welcome-form">
+    </div>
+
+    <button routerLink="/question" (click)="startQuiz()">Start the Quiz</button>
+
+</mat-card>
+
+
+

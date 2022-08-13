@@ -1,0 +1,138 @@
+<mat-card class="example-card">
+  <mat-card class="example-card-1">
+    <mat-card-title-group>
+      <mat-card-title>This is a Quiz!</mat-card-title>
+      <mat-card-subtitle>Welcome {{ name }}!</mat-card-subtitle>
+      <img
+        mat-card-sm-image
+        src="https://t4.ftcdn.net/jpg/04/02/84/53/360_F_402845356_uVLhPVNPmfcBEFZ0NFq79AsC0gVZsMvc.jpg"
+      />
+    </mat-card-title-group>
+    <mat-card-content> here is some text </mat-card-content>
+  </mat-card>
+
+  <ng-container *ngIf="!isQuizCompleted">
+    <mat-card class="example-card-2">
+      <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Timer"
+          ><h1>{{ counter }} sec ⏱</h1></mat-tab
+        >
+        <mat-tab label="Question"
+          ><h1>
+            Qeustion {{ currentQuestion + 1 }} of {{ questionList.length }}
+          </h1></mat-tab
+        >
+        <mat-tab label="Score"
+          ><h1>{{ points }} : Points</h1></mat-tab
+        >
+      </mat-tab-group>
+    </mat-card>
+
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Timer </mat-panel-title>
+          <mat-panel-title> Question </mat-panel-title>
+          <mat-panel-description> Points </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>This is the primary content of the panel.</p>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> Self aware panel </mat-panel-title>
+          <mat-panel-description>
+            Currently I am {{ panelOpenState ? "open" : "closed" }}
+          </mat-panel-description>
+          <mat-panel-title> Self aware panel </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am ope!!!!!!</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-card class="progress-bar">
+      <mat-progress-bar
+        mode="determinate"
+        [ngStyle]="{ width: progress + '%' }"
+      ></mat-progress-bar>
+    </mat-card>
+
+    <mat-card class="question">
+      <div>
+        <h3>{{ questionList[currentQuestion]?.questionText }}</h3>
+      </div>
+    </mat-card>
+
+    <mat-card class="options">
+      <mat-selection-list #option [multiple]="false">
+        <mat-list-option
+          *ngFor="let option of questionList[currentQuestion]?.options"
+          [value]="option"
+          (click)="answer(currentQuestion + 1, option)"
+          appChangeBg
+          [isCorrect]="option.correct"
+        >
+          {{ option.text }}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-card>
+
+    <p>
+      <mat-toolbar color="primary">
+        <button
+          [disabled]="currentQuestion === 0"
+          (click)="previousQuestion()"
+          mat-icon-button
+          class="example-icon"
+          aria-label="Example icon-button with menu icon"
+        >
+          <mat-icon>arrow_back_ios</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <button
+          (click)="resetQuiz()"
+          mat-icon-button
+          class="example-icon"
+          aria-label="Example icon-button with share icon"
+        >
+          <mat-icon>refresh</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <button
+          [disabled]="currentQuestion === questionList.length - 1"
+          (click)="nextQuestion()"
+          mat-icon-button
+          class="example-icon"
+          aria-label="Example icon-button with share icon"
+        >
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+      </mat-toolbar>
+    </p>
+  </ng-container>
+
+  <ng-container *ngIf="isQuizCompleted" style="text-align: center">
+    <mat-card class="example-card-congrats">
+      <mat-card-title-group>
+        <mat-card-title>CONGRATS!!! YOUVE COMPLETED THE QUIZ</mat-card-title>
+        <mat-card-subtitle>below are your results:</mat-card-subtitle>
+        <mat-card-subtitle>
+          <h2>Total Questions Attempted : {{ questionList.length }}</h2>
+          <h2>Total Correct Answered : {{ correctAnswer }}</h2>
+          <h2>Total Wrong Answered : {{ inCorrectAnswer }}</h2>
+          <h2>Your Score : {{ points }}</h2>
+        </mat-card-subtitle>
+        <img
+          mat-card-xl-image
+          src="https://media.istockphoto.com/vectors/party-popper-with-confetti-vector-id1125716911?k=20&m=1125716911&s=612x612&w=0&h=1jfthodW7JsOR8vz3A_e2HJbrAAjPJhogviXeOwaz5c="
+        />
+      </mat-card-title-group>
+      <mat-card-content>
+        
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</mat-card>
